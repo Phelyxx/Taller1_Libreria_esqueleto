@@ -340,9 +340,9 @@ public class Libreria
 		
 		for (int i = 0; i < categorias.length ;i++)
 		{
-			for (int j = 0; j < catalogos.size(); j++)
+			if (categorias[i].hayLibroDeAutor(nombreAutor) == true)
 			{
-				
+				resultado.add(categorias[i]);
 			}
 		}
 				
