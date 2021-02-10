@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Esta clase agrupa toda la información de una librería: las categorías que se
@@ -201,17 +201,8 @@ public class Libreria
 		// TODO Parte 2 - completar el método de acuerdo a la documentación
 		
 		
-		for (int i = 0; i < categorias.length && nombre == null; i++)
-		{
-			if (categorias[i].darNombre().equals(nombreCategoria))
-			{
-				nombre = categorias[i].darNombre();
-				darCategorias();
-				
-			}
-		}		
 		
-		return nombre;
+		return null;
 	}
 
 	/**
@@ -246,16 +237,15 @@ public class Libreria
 		 * 
 		 * Para agregar muchos elementos a una lista con facilidad puede utilizar el
 		 * método addAll.
-		 */
-		
-		
+		 */		
+				
 		for (int i = 0; i < categorias.length; i++)
-		{
-			if (catalogos.get(i).darCategoria().equals(nombreCategoria))
+		{						
+			if (catalogos.get(i).darCategoria().darNombre().equals(nombreCategoria))
 			{
-				String nombre = seleccionados.get(i).darTitulo();
-				seleccionados.addAll(nombre);
-			
+				Libro libros = catalogos.get(i);
+				
+				seleccionados.add(libros);
 			}
 		}	
 
