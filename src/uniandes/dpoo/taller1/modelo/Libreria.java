@@ -26,6 +26,9 @@ public class Libreria
 	 * TODO Parte 2 - agregar una asociación a la clase Categoria llamada
 	 * categorias, que sea un arreglo de Categoria
 	 */
+	
+	public Categoria[] categorias;
+	
 
 	/**
 	 * Una lista con los libros disponibles en la librería
@@ -52,7 +55,7 @@ public class Libreria
 	 */
 	public Libreria(String nombreArchivoCategorias, String nombreArchivoLibros) throws IOException
 	{
-		// this.categorias = cargarCategorias(nombreArchivoCategorias);
+		this.categorias = cargarCategorias(nombreArchivoCategorias);
 		// TODO Parte 2 - después de crear el atributo categoria, quite el comentario
 		// sobre la línea anterior
 
@@ -73,6 +76,7 @@ public class Libreria
 	public Categoria[] darCategorias()
 	{
 		// TODO Parte 2 - completar el método de acuerdo a la documentación
+		
 		return null;
 	}
 
