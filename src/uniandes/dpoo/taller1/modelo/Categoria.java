@@ -1,6 +1,10 @@
 package uniandes.dpoo.taller1.modelo;
-
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import uniandes.dpoo.taller1.modelo.Libro;
 
 /**
  * Esta clase representa a una categoría de libros dentro de la librería. Cada
@@ -26,6 +30,7 @@ public class Categoria
 	/**
 	 * Lista de libros que hacen parte de la categoría
 	 */
+	private ArrayList<Libro> libros;
 	/*
 	 * TODO Parte 3 - agregar una asociación a la clase Libro llamada libros, que
 	 * sea una lista de Libro
@@ -39,6 +44,7 @@ public class Categoria
 	{
 		this.nombre = nombre;
 		this.ficcion = ficcion;
+		this.libros = new ArrayList<Libro>();
 		/*
 		 * TODO Parte 3 - inicializa la lista de libros con una lista vacía. Si esto no
 		 * se hace al construir la categoría, la lista de libros sería null y todas las
@@ -75,11 +81,15 @@ public class Categoria
 	 * Retorna la lista de libros que hacen parte de la categoría
 	 * 
 	 * @return libros
+	 * 
+	 *
 	 */
 	public ArrayList<Libro> darLibros()
 	{
+		// cambien el valor de retorno de ArrayList<Libro> a List<Libro>
+		//PENDIENTE
 		// TODO Parte 3 - completar el método de acuerdo a la documentación
-		return null;
+		return libros;
 	}
 
 	// ************************************************************************
@@ -93,19 +103,31 @@ public class Categoria
 	 */
 	public void agregarLibro(Libro nuevoLibro)
 	{
+		libros.add(nuevoLibro);
+		// LISTO
 		// TODO Parte 3 - completar el método de acuerdo a la documentación
 	}
 
+	
+	
 	/**
 	 * Cuenta la cantidad de libros en la categoría
 	 * 
 	 * @return Cantidad de libros
 	 */
+	
 	public int contarLibrosEnCategoria()
 	{
+		return libros.size();
+		//Set<Libro> numlibros = new HashSet<>();
+		//for (Libro book : libros)
+		//{
+			//if (!numlibros.contains(book))
+				//numlibros.add(book);
+		//}
 		// TODO Parte 3 - completar el método de acuerdo a la documentación
 		// En este punto no debería tener que hacer ningún recorrido
-		return 0;
+		//return numlibros.size();
 	}
 
 	/**
@@ -115,10 +137,22 @@ public class Categoria
 	 */
 	public double calificacionPromedio()
 	{
+		double promedio = 0.0;
+		double calificaciones = 0.0;
+		int numerocalificaciones = 0;
+		while (numerocalificaciones < libros.size())
+			{
+				calificaciones += libros.get(numerocalificaciones).darCalificacion();
+				numerocalificaciones ++;
+			}
+		promedio = calificaciones/numerocalificaciones;
+		
 		// TODO Parte 3 - completar el método de acuerdo a la documentación
 		// En este punto tendrá que recorrer la lista de libros
-		return 0.0;
+		return promedio;
 	}
+
+	
 
 	/**
 	 * Consulta si en la categoría hay algún libro escrito por el autor indicado.
@@ -133,10 +167,21 @@ public class Categoria
 	 */
 	public boolean hayLibroDeAutor(String nombreAutor)
 	{
+		boolean exist = false;
+		for (Libro book : libros)
+			{
+				if(book.darAutor().equals(nombreAutor) == true)
+				{
+					exist = true;
+				}
+			}
 		// TODO Parte 3 - completar el método de acuerdo a la documentación
-		return false;
+		return exist;
 	}
 
+	
+	
+	
 	/**
 	 * Busca en la categoría los libros escritos por el autor indicado.
 	 * 
@@ -151,9 +196,19 @@ public class Categoria
 	 */
 	public ArrayList<Libro> buscarLibrosDeAutor(String nombreAutor)
 	{
+		ArrayList<Libro> librosautor = new ArrayList<Libro>();
+		for (Libro li:libros)
+		{
+			if (li.darAutor().toLowerCase().contains(nombreAutor.toLowerCase()));
+			{
+				librosautor.add(li);
+			}
+		
+		}
+		//PENDIENTE SE PUEDE AÑADIR EL MÉTODO EQUALIGNORECASE
 		// TODO Parte 3 - completar el método de acuerdo a la documentación
 		// Recuerde retornar una lista nueva (no la lista del atributo libros)
-		return null;
+		return librosautor;
 	}
 
 	// ************************************************************************
