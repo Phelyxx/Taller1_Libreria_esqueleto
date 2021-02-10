@@ -34,6 +34,8 @@ public class Libro
 	 * Imagen con la portada del libro
 	 */
 	// TODO Parte 1 - agregar una asociación a la clase Imagen llamada portada
+	private Imagen portada;
+		
 
 	// ************************************************************************
 	// Constructores
@@ -120,7 +122,13 @@ public class Libro
 	public Imagen darPortada()
 	{
 		// TODO Parte 1 - completar el método de acuerdo a la documentación
-		return null;
+		if (tienePortada() == false) {
+			Imagen notiene = new Imagen("./data/imagenes/missing.png", 85, 85);
+			return notiene;
+		}
+		else {
+			return portada;
+		}
 	}
 
 	// ************************************************************************
@@ -135,6 +143,7 @@ public class Libro
 	public void cambiarPortada(Imagen nuevaPortada)
 	{
 		// TODO Parte 1 - completar el método de acuerdo a la documentación
+		portada = nuevaPortada;
 	}
 
 	/**
@@ -146,7 +155,11 @@ public class Libro
 	public boolean tienePortada()
 	{
 		// TODO Parte 1 - completar el método de acuerdo a la documentación
-		return false;
+		boolean tiene = false;
+		if (portada != null) {
+			tiene = true;
+		}
+		return tiene;
 	}
 
 	@Override
