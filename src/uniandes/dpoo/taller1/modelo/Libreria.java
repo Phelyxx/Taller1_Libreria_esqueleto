@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import uniandes.dpoo.taller1.modelo.Libro;
+import uniandes.dpoo.taller1.modelo.Categoria;
 
 /**
  * Esta clase agrupa toda la información de una librería: las categorías que se
@@ -22,14 +25,15 @@ public class Libreria
 	/**
 	 * El arreglo con las categorías que hay en la librería
 	 */
-	/*
-	 * TODO Parte 2 - agregar una asociación a la clase Categoria llamada
+	private ArrayList<Categoria> categorias;
+	 /* TODO Parte 2 - agregar una asociación a la clase Categoria llamada
 	 * categorias, que sea un arreglo de Categoria
 	 */
 
 	/**
 	 * Una lista con los libros disponibles en la librería
 	 */
+	private ArrayList<Libro>catalogo;
 	/*
 	 * TODO Parte 4 - agregar una asociación a la clase Libro llamada catalogos, que
 	 * sea una lista de libros
@@ -52,11 +56,11 @@ public class Libreria
 	 */
 	public Libreria(String nombreArchivoCategorias, String nombreArchivoLibros) throws IOException
 	{
-		// this.categorias = cargarCategorias(nombreArchivoCategorias);
+		this.categorias = cargarCategorias(nombreArchivoCategorias);
 		// TODO Parte 2 - después de crear el atributo categoria, quite el comentario
 		// sobre la línea anterior
 
-		// this.catalogo = cargarCatalogo(nombreArchivoLibros);
+		this.catalogo = cargarCatalogo(nombreArchivoLibros);
 		// TODO Parte 4 - después de crear el atributo catalogo, quite el comentario
 		// sobre la línea anterior
 	}
@@ -76,6 +80,9 @@ public class Libreria
 		return null;
 	}
 
+	
+	
+	
 	/**
 	 * Retorna el catálogo completo de libros de la librería
 	 * 
@@ -83,10 +90,13 @@ public class Libreria
 	 */
 	public ArrayList<Libro> darLibros()
 	{
+		//PENDIENTE
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		return null;
+		return catalogo;
 	}
 
+
+	
 	// ************************************************************************
 	// Otros métodos
 	// ************************************************************************
@@ -208,6 +218,7 @@ public class Libreria
 		File archivo = new File("./data/" + nombreArchivo);
 		return archivo.exists();
 	}
+	
 
 	/**
 	 * Retorna una lista con los libros que pertenecen a la categoría indicada en el
@@ -242,9 +253,19 @@ public class Libreria
 	 */
 	public Libro buscarLibro(String tituloLibro)
 	{
+		Libro nameLibro = null;
+		for (Libro book: catalogo)
+		{
+			if (book.darTitulo().equals(tituloLibro) == true);
+			{
+				nameLibro = book;
+			}
+			
+		}
+		//LISTO
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return null;
+		return nameLibro;
 	}
 
 	/**
@@ -303,6 +324,8 @@ public class Libreria
 		return resultado;
 	}
 
+	
+	
 	/**
 	 * Calcula la calificación promedio calculada entre todos los libros del
 	 * catálogo
@@ -311,11 +334,22 @@ public class Libreria
 	 */
 	public double calificacionPromedio()
 	{
+		double promedio = 0.0;
+		double numpeliculas = catalogo.size();
+		double calificacion = 0.0;
+		for (Libro li: catalogo)
+		{
+			calificacion+= li.darCalificacion();
+		}
+		promedio = calificacion/numpeliculas;
+		//LISTO
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return 0.0;
+		return promedio;
 	}
 
+	
+	
 	/**
 	 * Busca cuál es la categoría que tiene más libros
 	 * 
@@ -341,6 +375,11 @@ public class Libreria
 		return null;
 	}
 
+	
+	
+	
+	
+	
 	/**
 	 * Cuenta cuántos libros del catálogo no tienen portada
 	 * 
@@ -348,9 +387,19 @@ public class Libreria
 	 */
 	public int contarLibrosSinPortada()
 	{
+		int numportadas = 0;
+		for (Libro numlibros:catalogo)
+		{
+			if (numlibros.tienePortada() == false)
+			{
+				numportadas++;
+			}
+		
+		}
+		//LISTO
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return 0;
+		return numportadas;
 	}
 
 	/**
@@ -361,6 +410,18 @@ public class Libreria
 	 */
 	public boolean hayAutorEnVariasCategorias()
 	{
+		boolean cate = false;
+		for (Libro book: catalogo)
+		{
+			book.darCategoria();
+			book.darAutor();
+		}
+		for (Categoria catego : categorias)
+		{
+			
+			//categorias.
+		}
+		
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Implemente el método como considere conveniente (recorriendo primero las
 		// categorías o los libros)
