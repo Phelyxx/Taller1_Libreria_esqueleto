@@ -291,7 +291,12 @@ public class Libreria
 		 * Para agregar muchos elementos a una lista con facilidad puede utilizar el
 		 * método addAll.
 		 */
-
+		
+		for (int i = 0; i < categorias.length ;i++)
+		{
+			
+		}
+		
 		return librosAutor;
 	}
 
