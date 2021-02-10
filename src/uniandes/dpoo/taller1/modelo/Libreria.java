@@ -410,22 +410,25 @@ public class Libreria
 	 */
 	public boolean hayAutorEnVariasCategorias()
 	{
-		boolean cate = false;
-		for (Libro book: catalogo)
-		{
-			book.darCategoria();
-			book.darAutor();
-		}
-		for (Categoria catego : categorias)
-		{
-			
-			//categorias.
-		}
 		
+		ArrayList<String> namestitulo = new ArrayList<String>();
+		boolean presente = false;
+		for (Libro book:catalogo)
+		{
+				if(namestitulo.contains(book.darTitulo()) == true)
+				{
+					presente = true;
+				}
+				else {
+					
+					namestitulo.add(book.darTitulo());
+				}
+				
+			}	
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Implemente el método como considere conveniente (recorriendo primero las
 		// categorías o los libros)
-		return false;
-	}
-
+		return presente;
+		}
+	
 }
