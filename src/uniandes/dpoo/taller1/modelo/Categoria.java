@@ -1,11 +1,15 @@
 package uniandes.dpoo.taller1.modelo;
-
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import uniandes.dpoo.taller1.modelo.Libro;
 
 /**
- * Esta clase representa a una categor√≠a de libros dentro de la librer√≠a. Cada
- * categor√≠a tiene un nombre √∫nico y adem√°s sabe si es una categor√≠a a la que
- * pertenecen libros de ficci√≥n o no.
+ * Esta clase representa a una categorÌa de libros dentro de la librerÌa. Cada
+ * categorÌa tiene un nombre ˙nico y adem·s sabe si es una categorÌa a la que
+ * pertenecen libros de ficciÛn o no.
  */
 public class Categoria
 {
@@ -14,20 +18,21 @@ public class Categoria
 	// ************************************************************************
 
 	/**
-	 * Nombre de la categor√≠a
+	 * Nombre de la categorÌa
 	 */
 	private String nombre;
 
 	/**
-	 * Indica si la categor√≠a corresponde a libros de ficci√≥n o no
+	 * Indica si la categorÌa corresponde a libros de ficciÛn o no
 	 */
 	private boolean ficcion;
 
 	/**
-	 * Lista de libros que hacen parte de la categor√≠a
+	 * Lista de libros que hacen parte de la categorÌa
 	 */
+	private ArrayList<Libro> libros;
 	/*
-	 * TODO Parte 3 - agregar una asociaci√≥n a la clase Libro llamada libros, que
+	 * TODO Parte 3 - agregar una asociaciÛn a la clase Libro llamada libros, que
 	 * sea una lista de Libro
 	 */
 
@@ -39,19 +44,20 @@ public class Categoria
 	{
 		this.nombre = nombre;
 		this.ficcion = ficcion;
+		this.libros = new ArrayList<Libro>();
 		/*
-		 * TODO Parte 3 - inicializa la lista de libros con una lista vac√≠a. Si esto no
-		 * se hace al construir la categor√≠a, la lista de libros ser√≠a null y todas las
-		 * instrucciones para agregar libros fallar√≠an.
+		 * TODO Parte 3 - inicializa la lista de libros con una lista vacÌa. Si esto no
+		 * se hace al construir la categorÌa, la lista de libros serÌa null y todas las
+		 * instrucciones para agregar libros fallarÌan.
 		 */
 	}
 
 	// ************************************************************************
-	// M√©todos para consultar los atributos
+	// MÈtodos para consultar los atributos
 	// ************************************************************************
 
 	/**
-	 * Consulta el nombre de la categor√≠a
+	 * Consulta el nombre de la categorÌa
 	 * 
 	 * @return Categoria
 	 */
@@ -61,7 +67,7 @@ public class Categoria
 	}
 
 	/**
-	 * Consulta si esta es una categor√≠a de ficci√≥n o no, con base en el atributo
+	 * Consulta si esta es una categorÌa de ficciÛn o no, con base en el atributo
 	 * ficcion.
 	 * 
 	 * @return ficcion
@@ -72,96 +78,145 @@ public class Categoria
 	}
 
 	/**
-	 * Retorna la lista de libros que hacen parte de la categor√≠a
+	 * Retorna la lista de libros que hacen parte de la categorÌa
 	 * 
 	 * @return libros
+	 * 
+	 *
 	 */
 	public ArrayList<Libro> darLibros()
 	{
-		// TODO Parte 3 - completar el m√©todo de acuerdo a la documentaci√≥n
-		return null;
+		// cambien el valor de retorno de ArrayList<Libro> a List<Libro>
+		//PENDIENTE
+		// TODO Parte 3 - completar el mÈtodo de acuerdo a la documentaciÛn
+		return libros;
 	}
 
 	// ************************************************************************
-	// Otros m√©todos
+	// Otros mÈtodos
 	// ************************************************************************
 
 	/**
-	 * Agrega un nuevo libro a la categor√≠a
+	 * Agrega un nuevo libro a la categorÌa
 	 * 
 	 * @param nuevoLibro El nuevo libro que se va a agregar.
 	 */
 	public void agregarLibro(Libro nuevoLibro)
 	{
-		// TODO Parte 3 - completar el m√©todo de acuerdo a la documentaci√≥n
+		libros.add(nuevoLibro);
+		// LISTO
+		// TODO Parte 3 - completar el mÈtodo de acuerdo a la documentaciÛn
 	}
 
+	
+	
 	/**
-	 * Cuenta la cantidad de libros en la categor√≠a
+	 * Cuenta la cantidad de libros en la categorÌa
 	 * 
 	 * @return Cantidad de libros
 	 */
+	
 	public int contarLibrosEnCategoria()
 	{
-		// TODO Parte 3 - completar el m√©todo de acuerdo a la documentaci√≥n
-		// En este punto no deber√≠a tener que hacer ning√∫n recorrido
-		return 0;
+		return libros.size();
+		//Set<Libro> numlibros = new HashSet<>();
+		//for (Libro book : libros)
+		//{
+			//if (!numlibros.contains(book))
+				//numlibros.add(book);
+		//}
+		// TODO Parte 3 - completar el mÈtodo de acuerdo a la documentaciÛn
+		// En este punto no deberÌa tener que hacer ning˙n recorrido
+		//return numlibros.size();
 	}
 
 	/**
-	 * Calcula la calificaci√≥n promedio de los libros que pertenecen a la categor√≠a
+	 * Calcula la calificaciÛn promedio de los libros que pertenecen a la categorÌa
 	 * 
-	 * @return Calificaci√≥n promedio
+	 * @return CalificaciÛn promedio
 	 */
 	public double calificacionPromedio()
 	{
-		// TODO Parte 3 - completar el m√©todo de acuerdo a la documentaci√≥n
-		// En este punto tendr√° que recorrer la lista de libros
-		return 0.0;
+		double promedio = 0.0;
+		double calificaciones = 0.0;
+		int numerocalificaciones = 0;
+		while (numerocalificaciones < libros.size())
+			{
+				calificaciones += libros.get(numerocalificaciones).darCalificacion();
+				numerocalificaciones ++;
+			}
+		promedio = calificaciones/numerocalificaciones;
+		
+		// TODO Parte 3 - completar el mÈtodo de acuerdo a la documentaciÛn
+		// En este punto tendr· que recorrer la lista de libros
+		return promedio;
 	}
 
+	
+
 	/**
-	 * Consulta si en la categor√≠a hay alg√∫n libro escrito por el autor indicado.
+	 * Consulta si en la categorÌa hay alg˙n libro escrito por el autor indicado.
 	 * 
-	 * La b√∫squeda del autor se hace de forma exacta (tiene que ser id√©ntico al
-	 * valor indicado en el par√°metro nombreAutor).
+	 * La b˙squeda del autor se hace de forma exacta (tiene que ser idÈntico al
+	 * valor indicado en el par·metro nombreAutor).
 	 * 
 	 * @param nombreAutor El nombre del autor para el que se quiere hacer la
-	 *                    b√∫squeda.
+	 *                    b˙squeda.
 	 * @return Retorna true si hay al menos un libro cuyo autor es el autor buscado.
 	 *         Retorna false de lo contrario.
 	 */
 	public boolean hayLibroDeAutor(String nombreAutor)
 	{
-		// TODO Parte 3 - completar el m√©todo de acuerdo a la documentaci√≥n
-		return false;
+		boolean exist = false;
+		for (Libro book : libros)
+			{
+				if(book.darAutor().equals(nombreAutor) == true)
+				{
+					exist = true;
+				}
+			}
+		// TODO Parte 3 - completar el mÈtodo de acuerdo a la documentaciÛn
+		return exist;
 	}
 
+	
+	
+	
 	/**
-	 * Busca en la categor√≠a los libros escritos por el autor indicado.
+	 * Busca en la categorÌa los libros escritos por el autor indicado.
 	 * 
-	 * El nombre del autor puede estar incompleto, y la b√∫squeda no debe tener en
-	 * cuenta may√∫sculas y min√∫sculas. Por ejemplo, si se buscara por "ulio v"
-	 * deber√≠an encontrarse los libros donde el autor sea "Julio Verne".
+	 * El nombre del autor puede estar incompleto, y la b˙squeda no debe tener en
+	 * cuenta may˙sculas y min˙sculas. Por ejemplo, si se buscara por "ulio v"
+	 * deberÌan encontrarse los libros donde el autor sea "Julio Verne".
 	 * 
-	 * @param cadenaAutor La cadena que se usar√° para consultar el autor. No
+	 * @param cadenaAutor La cadena que se usar· para consultar el autor. No
 	 *                    necesariamente corresponde al nombre completo de un autor.
 	 * @return Una lista con todos los libros cuyo autor coincida con la cadena
 	 *         indicada
 	 */
 	public ArrayList<Libro> buscarLibrosDeAutor(String nombreAutor)
 	{
-		// TODO Parte 3 - completar el m√©todo de acuerdo a la documentaci√≥n
+		ArrayList<Libro> librosautor = new ArrayList<Libro>();
+		for (Libro li:libros)
+		{
+			if (li.darAutor().toLowerCase().contains(nombreAutor.toLowerCase()));
+			{
+				librosautor.add(li);
+			}
+		
+		}
+		//PENDIENTE SE PUEDE A—ADIR EL M…TODO EQUALIGNORECASE
+		// TODO Parte 3 - completar el mÈtodo de acuerdo a la documentaciÛn
 		// Recuerde retornar una lista nueva (no la lista del atributo libros)
-		return null;
+		return librosautor;
 	}
 
 	// ************************************************************************
-	// M√©todos sobrecargados
+	// MÈtodos sobrecargados
 	// ************************************************************************
 
 	/**
-	 * Este m√©todo permite representar una categor√≠a como una cadena de caracteres
+	 * Este mÈtodo permite representar una categorÌa como una cadena de caracteres
 	 */
 	@Override
 	public String toString()
@@ -170,3 +225,7 @@ public class Categoria
 	}
 
 }
+
+
+
+

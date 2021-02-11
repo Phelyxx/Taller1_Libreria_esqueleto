@@ -34,8 +34,9 @@ public class Libreria
 	/**
 	 * Una lista con los libros disponibles en la librería
 	 */
-	/*
-	 * TODO Parte 4 - agregar una asociación a la clase Libro llamada catalogos, que
+	 private ArrayList<Libro>catalogo;
+	 
+	 /* TODO Parte 4 - agregar una asociación a la clase Libro llamada catalogos, que
 	 * sea una lista de libros
 	 */
 	public ArrayList<Libro> catalogos ;
@@ -61,7 +62,7 @@ public class Libreria
 		// TODO Parte 2 - después de crear el atributo categoria, quite el comentario
 		// sobre la línea anterior
 
-		// this.catalogo = cargarCatalogo(nombreArchivoLibros);
+		this.catalogo = cargarCatalogo(nombreArchivoLibros);
 		// TODO Parte 4 - después de crear el atributo catalogo, quite el comentario
 		// sobre la línea anterior
 	}
@@ -89,8 +90,9 @@ public class Libreria
 	 */
 	public ArrayList<Libro> darLibros()
 	{
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		return null;
+		//PENDIENTE
+		// TODO Parte 4 - completar el m�todo de acuerdo a la documentaci�n
+		return catalogo;
 	}
 
 	// ************************************************************************
@@ -267,11 +269,20 @@ public class Libreria
 	 */
 	public Libro buscarLibro(String tituloLibro)
 	{
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
+		Libro nameLibro = null;
+		for (Libro book: catalogo)
+		{
+			if (book.darTitulo().equals(tituloLibro) == true)
+			{
+				nameLibro = book;
+			}
+			
+		}
+		//LISTO
+		// TODO Parte 4 - completar el m�todo de acuerdo a la documentaci�n
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return null;
+		return nameLibro;
 	}
-
 	/**
 	 * Busca en la librería los libros escritos por el autor indicado.
 	 * 
@@ -357,11 +368,20 @@ public class Libreria
 	 */
 	public double calificacionPromedio()
 	{
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
+		double promedio = 0.0;
+		double numbooks = catalogo.size();
+		double calificacion = 0.0;
+		for (Libro li: catalogo)
+		{
+			calificacion+= li.darCalificacion();
+		}
+		promedio = calificacion/numbooks;
+		//LISTO
+		// TODO Parte 4 - completar el m�todo de acuerdo a la documentaci�n
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return 0.0;
+		return promedio;
 	}
-
+	
 	/**
 	 * Busca cuál es la categoría que tiene más libros
 	 * 
@@ -423,10 +443,21 @@ public class Libreria
 	 */
 	public int contarLibrosSinPortada()
 	{
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
+		int numportadas = 0;
+		for (Libro numlibros:catalogo)
+		{
+			if (numlibros.tienePortada() == false)
+			{
+				numportadas++;
+			}
+		
+		}
+		//LISTO
+		// TODO Parte 4 - completar el m�todo de acuerdo a la documentaci�n
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return 0;
+		return numportadas;
 	}
+
 
 	/**
 	 * Consulta si hay algún autor que tenga un libro en más de una categoría
@@ -436,12 +467,48 @@ public class Libreria
 	 */
 	public boolean hayAutorEnVariasCategorias()
 	{
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		// Implemente el método como considere conveniente (recorriendo primero las
-		// categorías o los libros)
-		return false;
-	}
+		ArrayList<Categoria> libroscategoria = new ArrayList<Categoria>();
+		ArrayList<String> namesautor = new ArrayList<String>();
+		boolean presente = false;
+		for (Categoria cate : categorias)
+		{
+			
+			ArrayList<Libro> namesbook = cate.darLibros();
+			for (Libro book: namesbook)
+			{
+				if((namesautor.contains(book.darAutor()) == false) && (libroscategoria.contains(book.darCategoria())==false))
+				{
+					namesautor.add(book.darAutor());
+					libroscategoria.add(book.darCategoria());
+				}
+					
+				else if((namesautor.contains(book.darAutor()) == true) && (libroscategoria.contains(book.darCategoria())==true))
+				{
+					namesautor.add(book.darAutor());
+					libroscategoria.add(book.darCategoria());
+					
+				}
+				else if ((namesautor.contains(book.darAutor()) == true) && (libroscategoria.contains(book.darCategoria())==false)) 
+				
+				{
+					presente = true;
+					
+				}
+				else {
+					namesautor.add(book.darAutor());
+					libroscategoria.add(book.darCategoria());
+				}
+			}
+				
+		}
+		// TODO Parte 4 - completar el m�todo de acuerdo a la documentaci�n
+		// Implemente el m�todo como considere conveniente (recorriendo primero las
+		// categor�as o los libros)
+		return presente;
+		}
+	
 
+	
 }
 
 
