@@ -123,7 +123,7 @@ public class Libro
 	{
 		// TODO Parte 1 - completar el método de acuerdo a la documentación
 		if (tienePortada() == false) {
-			Imagen notiene = new Imagen("./data/imagenes/missing.png", 85, 85);
+			Imagen notiene = new Imagen("./imagenes/missing.png", 85, 85);
 			return notiene;
 		}
 		else {
