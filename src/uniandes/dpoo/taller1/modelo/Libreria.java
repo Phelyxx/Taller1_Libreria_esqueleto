@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Esta clase agrupa toda la información de una librería: las categorías que se
@@ -26,6 +27,9 @@ public class Libreria
 	 * TODO Parte 2 - agregar una asociación a la clase Categoria llamada
 	 * categorias, que sea un arreglo de Categoria
 	 */
+	
+	public Categoria[] categorias;
+	
 
 	/**
 	 * Una lista con los libros disponibles en la librería
@@ -34,6 +38,7 @@ public class Libreria
 	 * TODO Parte 4 - agregar una asociación a la clase Libro llamada catalogos, que
 	 * sea una lista de libros
 	 */
+	public ArrayList<Libro> catalogos ;
 
 	// ************************************************************************
 	// Constructores
@@ -52,7 +57,7 @@ public class Libreria
 	 */
 	public Libreria(String nombreArchivoCategorias, String nombreArchivoLibros) throws IOException
 	{
-		// this.categorias = cargarCategorias(nombreArchivoCategorias);
+		this.categorias = cargarCategorias(nombreArchivoCategorias);
 		// TODO Parte 2 - después de crear el atributo categoria, quite el comentario
 		// sobre la línea anterior
 
@@ -73,7 +78,8 @@ public class Libreria
 	public Categoria[] darCategorias()
 	{
 		// TODO Parte 2 - completar el método de acuerdo a la documentación
-		return null;
+		
+		return categorias;
 	}
 
 	/**
@@ -193,7 +199,16 @@ public class Libreria
 	private Categoria buscarCategoria(String nombreCategoria)
 	{
 		// TODO Parte 2 - completar el método de acuerdo a la documentación
-		return null;
+		
+		Categoria catg = null;
+		for (int i = 0; i < categorias.length && catg == null ; i++)
+		{						
+			if (categorias[i].darNombre().equals(nombreCategoria))
+			{
+				catg = categorias[i];
+			}				
+		}	
+		return catg;
 	}
 
 	/**
@@ -228,8 +243,18 @@ public class Libreria
 		 * 
 		 * Para agregar muchos elementos a una lista con facilidad puede utilizar el
 		 * método addAll.
-		 */
-
+		 */		
+				
+		for (int i = 0; i < catalogos.size(); i++)
+		{						
+			if (catalogos.get(i).darCategoria().darNombre().equals(nombreCategoria))
+			{
+				Libro libros = catalogos.get(i);
+				
+				seleccionados.add(libros);
+			}
+		}	
+		
 		return seleccionados;
 	}
 
@@ -270,9 +295,22 @@ public class Libreria
 		 * que se encuentra en la variable 'librosAutor'.
 		 * 
 		 * Para agregar muchos elementos a una lista con facilidad puede utilizar el
-		 * método addAll.
+		 * método addAll. ***
 		 */
-
+		
+		String autor = cadenaAutor.toLowerCase();
+		
+		for (int i = 0; i < catalogos.size() ;i++)
+		{
+			if (catalogos.get(i).darAutor().toLowerCase().contains(autor))
+			{
+				Libro libros_titulo = catalogos.get(i);
+				
+				librosAutor.add(libros_titulo);
+			}
+		
+		}
+		
 		return librosAutor;
 	}
 
@@ -299,7 +337,15 @@ public class Libreria
 		 * 
 		 * Para agregar un elemento a una lista puede utilizar el método add.
 		 */
-
+		
+		for (int i = 0; i < categorias.length ;i++)
+		{
+			if (categorias[i].hayLibroDeAutor(nombreAutor) == true)
+			{
+				resultado.add(categorias[i]);
+			}
+		}
+				
 		return resultado;
 	}
 
@@ -326,7 +372,23 @@ public class Libreria
 	public Categoria categoriaConMasLibros()
 	{
 		// TODO Parte 2 - completar el método de acuerdo a la documentación
-		return null;
+		
+		Categoria masLibros = null;
+		
+		int mayor = 0;
+		
+		for (int i = 0; i < categorias.length ;i++)
+		{
+			if (categorias[i].contarLibrosEnCategoria() >= mayor)
+			{
+				mayor = categorias[i].contarLibrosEnCategoria();
+				masLibros = categorias[i];
+			}
+		}
+
+		return masLibros;	
+		
+		
 	}
 
 	/**
@@ -338,7 +400,20 @@ public class Libreria
 	public Categoria categoriaConMejoresLibros()
 	{
 		// TODO Parte 2 - completar el método de acuerdo a la documentación
-		return null;
+		
+		double mayor  = 0;
+		Categoria nombre = null;
+		
+		for (int i = 0; i < categorias.length ;i++)
+		{
+			if (categorias[i].calificacionPromedio() > mayor)
+			{
+				mayor = categorias[i].calificacionPromedio();
+				nombre = categorias[i];
+			}		
+		}
+
+		return nombre;
 	}
 
 	/**
@@ -368,3 +443,6 @@ public class Libreria
 	}
 
 }
+
+
+
