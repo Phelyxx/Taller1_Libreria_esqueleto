@@ -34,12 +34,11 @@ public class Libreria
 	/**
 	 * Una lista con los libros disponibles en la librerÃ­a
 	 */
-	 private ArrayList<Libro>catalogo;
 	 
 	 /* TODO Parte 4 - agregar una asociaciÃ³n a la clase Libro llamada catalogos, que
 	 * sea una lista de libros
 	 */
-	public ArrayList<Libro> catalogos ;
+	public ArrayList<Libro> catalogo;
 
 	// ************************************************************************
 	// Constructores
@@ -91,7 +90,7 @@ public class Libreria
 	public ArrayList<Libro> darLibros()
 	{
 		//PENDIENTE
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
+		// TODO Parte 4 - completar el mï¿½todo de acuerdo a la documentaciï¿½n
 		return catalogo;
 	}
 
@@ -247,11 +246,11 @@ public class Libreria
 		 * mÃ©todo addAll.
 		 */		
 				
-		for (int i = 0; i < catalogos.size(); i++)
+		for (int i = 0; i < catalogo.size(); i++)
 		{						
-			if (catalogos.get(i).darCategoria().darNombre().equals(nombreCategoria))
+			if (catalogo.get(i).darCategoria().darNombre().equals(nombreCategoria))
 			{
-				Libro libros = catalogos.get(i);
+				Libro libros = catalogo.get(i);
 				
 				seleccionados.add(libros);
 			}
@@ -279,7 +278,7 @@ public class Libreria
 			
 		}
 		//LISTO
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
+		// TODO Parte 4 - completar el mï¿½todo de acuerdo a la documentaciï¿½n
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
 		return nameLibro;
 	}
@@ -311,11 +310,11 @@ public class Libreria
 		
 		String autor = cadenaAutor.toLowerCase();
 		
-		for (int i = 0; i < catalogos.size() ;i++)
+		for (int i = 0; i < catalogo.size() ;i++)
 		{
-			if (catalogos.get(i).darAutor().toLowerCase().contains(autor))
+			if (catalogo.get(i).darAutor().toLowerCase().contains(autor))
 			{
-				Libro libros_titulo = catalogos.get(i);
+				Libro libros_titulo = catalogo.get(i);
 				
 				librosAutor.add(libros_titulo);
 			}
@@ -377,7 +376,7 @@ public class Libreria
 		}
 		promedio = calificacion/numbooks;
 		//LISTO
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
+		// TODO Parte 4 - completar el mï¿½todo de acuerdo a la documentaciï¿½n
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
 		return promedio;
 	}
@@ -453,7 +452,7 @@ public class Libreria
 		
 		}
 		//LISTO
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
+		// TODO Parte 4 - completar el mï¿½todo de acuerdo a la documentaciï¿½n
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
 		return numportadas;
 	}
@@ -501,9 +500,9 @@ public class Libreria
 			}
 				
 		}
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		// Implemente el método como considere conveniente (recorriendo primero las
-		// categorías o los libros)
+		// TODO Parte 4 - completar el mï¿½todo de acuerdo a la documentaciï¿½n
+		// Implemente el mï¿½todo como considere conveniente (recorriendo primero las
+		// categorï¿½as o los libros)
 		return presente;
 		}
 	
