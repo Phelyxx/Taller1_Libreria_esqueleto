@@ -16,7 +16,7 @@ public class Categoria
 	/**
 	 * Nombre de la categoría
 	 */
-	private String nombre;
+	private String nombre1;
 
 	/**
 	 * Indica si la categoría corresponde a libros de ficción o no
