@@ -18,7 +18,7 @@ public class Categoria
 	// ************************************************************************
 
 	/**
-	 * Nombre de la categoría
+	 * Nombre de la categorío
 	 */
 	private String nombre;
 
